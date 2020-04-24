@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+Let's chat
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container-bg">
+    <div class="container">
+
+
+        <p>
+            {% if userInput %}
+            <h4>{{userInput}}</h4>
+            <p>replace these two userInput with response </p>
+            {% else %}
+            <h4>Please Type something</h4>
+            {% endif %}
+        </p>
+
+
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <form class="form-inline" method="POST">
+
+                {{ form.hidden_tag() }}
+                {{ wtf.quick_form(form) }}
+
+
+            </form>
+        </nav>
+
+    </div>
+
+</div>
+{% endblock %}
