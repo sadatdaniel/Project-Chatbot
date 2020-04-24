@@ -2,7 +2,7 @@
 # Views are same as routes in Django
 
 import os
-#import predict
+from predict import Predict
 
 from flask import Flask, render_template
 from form import chatForm
@@ -13,9 +13,7 @@ Bootstrap(app)
 topSecret = os.urandom(50)
 app.config['SECRET_KEY'] = topSecret
 
-
-#a = Predict()
-
+a = Predict()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -23,8 +21,8 @@ def home():
     form = chatForm()
     if form.validate_on_submit():
         userInput = form.box.data
-        #response = a.getResult(userInput)
-        # return render_template('home.html', form=form, userInput=userInput, response=response)
+        response = a.getResult(userInput)
+        return render_template('home.html', form=form, userInput=userInput, response=response)
     return render_template('home.html', form=form, userInput=userInput)
 
 
