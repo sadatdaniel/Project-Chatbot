@@ -6,12 +6,12 @@ class Predict:
         self.words, self.labels, self.dataorigin = loadData()
         self.model = loadModel(len(self.words),len(self.labels))
 
-    def getResult(self, input):
+    def getResult(self, input, n):
         start = time.time()
         
         output = oneHotEncodingInput(input,self.words)
         output = self.model.predict([output])
-        output = retrieveResponse(output,self.dataorigin)
+        output = retrieveResponse(output,self.dataorigin, n)
         
         end = time.time()
 
@@ -23,4 +23,4 @@ class Predict:
 #for testing purposes
 if __name__ == '__main__':
     a = Predict()
-    print(a.getResult('EĞİTİM İÇİN ÜNİVERSİTEYE DAVET'))
+    print(a.getResult('İLK YARDIM MERKEZİ VE DETAYI', 3))

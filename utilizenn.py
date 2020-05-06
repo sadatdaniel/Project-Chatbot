@@ -36,13 +36,29 @@ def oneHotEncodingInput(input,words):
             bag.append(0)
     return bag
 
-def retrieveResponse(output,data_origin):
-    response_id = np.argmax(output[0])
-    #print(response_id)
+
+def getOrderedResult(output):
+    results = np.sort(output[0])
+    results = results[::-1]
+    orderedResults = []
+    for i in range(len(results)):
+        seen = np.where(output[0] == results[i])
+        orderedResults.append(seen[0][0])
+    return orderedResults
+
+def retrieveResponse(output,data_origin,n):
+    response_ids = getOrderedResult(output)
+    response_dict = {}
+
+    if(n > len(response_ids)):
+        n = len(response_ids)
     
-    for index, row in data_origin.iterrows():
-        if(row['RESPONSE_ID'] == response_id):
-            return row['RESPONSE']
+    for i in range(n):
+        for index, row in data_origin.iterrows():
+            if(row['RESPONSE_ID'] == response_ids[i]):
+                response_dict[str(i)] = row['RESPONSE']
+                break
+    return response_dict
 
 
 def getModel(words_length,labels_length):
@@ -68,9 +84,6 @@ def loadModel(words_length,labels_length):
 
 #for testing purposes
 if __name__ == '__main__':
-    pass
-    #print(preprocessAword('tRıaL ğğ öö? .,;:!s'))
-    #words, labels, data_origin = loadData()
-    #print(data_origin.head())
-    #output =oneHotEncodingInput('Bağışımı x istiyorum',['x','y','z','m','n','h'])
-    #print(output)
+    #pass
+    arr = np.array([[5,10,2,1,99]])
+    print(getOrderedResult(arr))
