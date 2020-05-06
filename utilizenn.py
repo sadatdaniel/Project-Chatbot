@@ -38,7 +38,7 @@ def oneHotEncodingInput(input,words):
 
 def retrieveResponse(output,data_origin):
     response_id = np.argmax(output[0])
-    print(response_id)
+    #print(response_id)
     
     for index, row in data_origin.iterrows():
         if(row['RESPONSE_ID'] == response_id):

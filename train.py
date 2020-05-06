@@ -8,7 +8,7 @@ import pickle
 
 #read excel file into a dataframe
 my_sheet = 'Sayfa1'
-file_name = "WebChat_KonuBasliklari.xlsx"
+file_name = "Arranged_WebChat_KonuBasliklari.xlsx"
 data_origin = pd.read_excel(file_name, sheet_name = my_sheet)
 
 #drop unneccessary columns --> web chat, dil

@@ -1,13 +1,23 @@
 from utilizenn import loadData, loadModel, retrieveResponse, oneHotEncodingInput
+import time
+
 class Predict:
     def __init__(self):
         self.words, self.labels, self.dataorigin = loadData()
         self.model = loadModel(len(self.words),len(self.labels))
 
     def getResult(self, input):
+        start = time.time()
+        
         output = oneHotEncodingInput(input,self.words)
         output = self.model.predict([output])
         output = retrieveResponse(output,self.dataorigin)
+        
+        end = time.time()
+
+        elapsepTime = end - start
+        print("Resulted in -- " + str(elapsepTime) + " seconds")
+
         return output
 
 #for testing purposes
