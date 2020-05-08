@@ -1,8 +1,11 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import string
 import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
+from utilizetoken import tokenize
 import pickle
 
 def preprocessAword(s):
@@ -12,6 +15,8 @@ def preprocessAword(s):
     s = s.translate(str.maketrans('', '', string.punctuation))
     #lowercase all
     s = s.lower()
+    #find the root
+    s = tokenize(s)
     #replace Turkish characters with English ones
     tr = "çğıöşü"
     eng = "cgiosu"
@@ -85,5 +90,4 @@ def loadModel(words_length,labels_length):
 #for testing purposes
 if __name__ == '__main__':
     #pass
-    arr = np.array([[5,10,2,1,99]])
-    print(getOrderedResult(arr))
+    print(preprocessAword("  böylelikle "))

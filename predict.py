@@ -1,3 +1,5 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from utilizenn import loadData, loadModel, retrieveResponse, oneHotEncodingInput
 import time
 
@@ -23,4 +25,4 @@ class Predict:
 #for testing purposes
 if __name__ == '__main__':
     a = Predict()
-    print(a.getResult('İLK YARDIM MERKEZİ VE DETAYI', 3))
+    print(a.getResult('bağışlarımızdan', 5))
