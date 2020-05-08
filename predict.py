@@ -7,6 +7,7 @@ class Predict:
     def __init__(self):
         self.words, self.labels, self.dataorigin = loadData()
         self.model = loadModel(len(self.words),len(self.labels))
+        #print(self.labels)
 
     def getResult(self, input, n):
         start = time.time()
@@ -25,4 +26,4 @@ class Predict:
 #for testing purposes
 if __name__ == '__main__':
     a = Predict()
-    print(a.getResult('bağışlarımızdan', 5))
+    print(a.getResult('mesaj ile Nasıl Bağış Yaparım', 5))

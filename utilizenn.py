@@ -9,18 +9,18 @@ from utilizetoken import tokenize
 import pickle
 
 def preprocessAword(s):
-    #delete whitespace
-    s = s.translate(str.maketrans('', '', string.whitespace))
     #delete punctuation
     s = s.translate(str.maketrans('', '', string.punctuation))
+    #delete whitespace
+    s = s.translate(str.maketrans('', '', string.whitespace))
     #lowercase all
     s = s.lower()
     #find the root
     s = tokenize(s)
     #replace Turkish characters with English ones
-    tr = "çğıöşü"
-    eng = "cgiosu"
-    s = s.translate(str.maketrans(tr, eng))
+    #tr = "çğıöşü"
+    #eng = "cgiosu"
+    #s = s.translate(str.maketrans(tr, eng))
     return s
 
 def loadData():

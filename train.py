@@ -76,11 +76,11 @@ EPOCHS = 350
 checkpoint_path = "training/cp.ckpt"
 cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,
                                                 save_weights_only=True,
-                                                verbose=1
+                                                verbose=0
                                                 )
 
 #training the model
-model.fit(X,Y,epochs=EPOCHS, callbacks=[cp_callback], verbose=0)
+model.fit(X,Y,epochs=EPOCHS, callbacks=[cp_callback], verbose=1)
 
 #A painful debugging happened here
 #output = oneHotEncodingInput('ODUL/MADALYA SISTEMI NEDIR?',words)

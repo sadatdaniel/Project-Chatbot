@@ -95,5 +95,5 @@ def tokenize(input):
 
 if __name__ == "__main__":
     print("------------------------------------------")
-    print("Predicted : ",tokenize(None))
+    print("Predicted : ",tokenize("bağışı"))
     print("------------------------------------------")
