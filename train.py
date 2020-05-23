@@ -71,7 +71,7 @@ Y = np.array(Y)
 
 #creating the network
 model = getModel(len(words),len(labels))
-EPOCHS = 350
+EPOCHS = 200
 # Create a callback that saves the model's weights
 checkpoint_path = "training/cp.ckpt"
 cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path,

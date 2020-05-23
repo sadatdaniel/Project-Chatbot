@@ -2,7 +2,7 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import numpy as np
 import pickle
-from keras.models import model_from_json
+from tensorflow.keras.models import model_from_json
 import json
 
 
@@ -95,5 +95,5 @@ def tokenize(input):
 
 if __name__ == "__main__":
     print("------------------------------------------")
-    print("Predicted : ",tokenize("bağışı"))
+    print("Predicted : ",tokenize("bağışlarımız"))
     print("------------------------------------------")

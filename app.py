@@ -22,6 +22,27 @@ jwt = JWT(app,authenticate,identity)
 a = Predict()
 
 
+@app.route('/', methods=['GET', 'POST'])
+def home():
+  userInput = False
+  form = chatForm()
+  response = ""
+  if form.validate_on_submit():
+    userInput = form.box.data
+    response = a.getResult(userInput,5)
+    
+#response = a.getResult(userInput)
+# return render_template('home.html', form=form, userInput=userInput, response=response)
+  return render_template('home.html', form=form, userInput=userInput, response=response) 
+
+
+
+
+
+
+
+
+
 class ChatAPI(Resource):
 
   #  @jwt_required()
@@ -30,7 +51,8 @@ class ChatAPI(Resource):
 
     def post(self,userInput):
         
-        response = a.getResult(userInput,3)
+        print("----------------" + userInput)
+        response = a.getResult(userInput,5)
 
         return response
         

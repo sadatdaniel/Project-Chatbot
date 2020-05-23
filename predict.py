@@ -13,6 +13,10 @@ class Predict:
         start = time.time()
         
         output = oneHotEncodingInput(input,self.words)
+
+        if 1 not in output:
+            return {0 : "Not found in labeled data"}
+
         output = self.model.predict([output])
         output = retrieveResponse(output,self.dataorigin, n)
         
@@ -26,4 +30,4 @@ class Predict:
 #for testing purposes
 if __name__ == '__main__':
     a = Predict()
-    print(a.getResult('mesaj ile Nasıl Bağış Yaparım', 5))
+    print(a.getResult('en khjk hjk hj k', 5))
