@@ -64,9 +64,11 @@ def findSimilarIndex(s, words):
     biggestIndex = 0
     for i in range(len(words)):
         similarityPoint = similarity(s,words[i])
-        if(similarityPoint > biggest):
+        if(similarityPoint >= biggest):
             biggest = similarityPoint
             biggestIndex = i
+            if(words[i] == "bağış"):
+                break
     print(s + "-->"+ words[biggestIndex] + "-->" + str(biggestIndex))
     #print(words)
     return biggestIndex
@@ -97,6 +99,7 @@ def retrieveResponse(output,data_origin,n):
     
     response_list = list(response_dict)
     if response_list[0] < 50:
+        print("Possiblity --> " + str(response_list[0]))
         return {0 : "Please try again!!!!"}
     
     
@@ -180,5 +183,5 @@ def similarity(s1,s2):
 #for testing purposes
 if __name__ == '__main__':
     #pass
-    print(similarity("bagıs","şube"))
+    print(similarity("bagi","bağış"))
     #print(oneHotEncodingInput("reeewr BAĞISLADIM",["reeewr","bağış","şube","atlat","wet","bar","bagı"]))

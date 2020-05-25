@@ -7,7 +7,7 @@ class Predict:
     def __init__(self):
         self.words, self.labels, self.dataorigin = loadData()
         self.model = loadModel(len(self.words),len(self.labels))
-        #print(self.labels)
+        #print(self.words)
 
     def getResult(self, input, n):
         start = time.time()
@@ -30,4 +30,4 @@ class Predict:
 #for testing purposes
 if __name__ == '__main__':
     a = Predict()
-    print(a.getResult('en khjk hjk hj k', 5))
+    print(a.getResult('KAN GRUBUMU NASIL OGRENEBILIRIM ?', 5))

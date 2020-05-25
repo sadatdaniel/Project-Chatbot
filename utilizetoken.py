@@ -76,6 +76,59 @@ def decode(mat):
 		word += chars[np.argmax(mat[i,:])]
 	return word.strip().split()[0]
 
+def similarity(s1,s2):
+    tr="ığüşiöçIĞÜŞİÖÇ"
+    en='igusiocigusioc'
+    ss1=""
+    ss2=""
+    for i in range(len(s1)):
+        contain=False
+        for j in range(len(tr)):
+            if s1[i]==tr[j]:
+                ss1=ss1+en[j]
+                contain=True
+                continue
+        if not contain:
+            ss1=ss1+s1[i]
+    ss1=str.lower(ss1)
+
+
+    for i in range(len(s2)):
+        contain=False
+        for j in range(len(tr)):
+            if s2[i]==tr[j]:
+                ss2=ss2+en[j]
+                contain=True
+                continue
+        if not contain:
+            ss2=ss2+s2[i]
+    ss1=str.lower(ss1)
+    ss2=str.lower(ss2)
+
+    list1=ss1.split(' ')
+    list2=ss2.split(' ')
+    sameChar = 0
+    mostSimilar=0
+    total=0
+    for j in list1:
+        for k in list2:
+            sameChar=0
+            for i in range(min(len(j),len(k))):
+                if j[i]==k[i]:
+                    sameChar+=1
+            similar=sameChar/len(j)
+            p1=0
+            p2=0
+            while p1<len(j) and p2<len(k):
+                if j[p1]==k[p2]:
+                    p1+=1
+                p2+=1
+            abb=0.8*p1/len(j)
+            mostSimilar=max(mostSimilar,similar,abb)
+        total*=1.5
+        total+=mostSimilar
+        mostSimilar=0
+    return total/len(list1)
 
 def tokenize(input):
     if(input == None):
@@ -90,10 +143,15 @@ def tokenize(input):
     x = np.array(x)
 
     yp = model.predict(x)
-    return decode(yp[0])
+    decoded = decode(yp[0])
+    
+    if similarity(decoded,"bağış") > 0.9:
+        return "bağış"
+    
+    return decoded
 
 
 if __name__ == "__main__":
     print("------------------------------------------")
-    print("Predicted : ",tokenize("bağışlarımız"))
+    print("Predicted : ",tokenize("bagislarimiz"))
     print("------------------------------------------")
